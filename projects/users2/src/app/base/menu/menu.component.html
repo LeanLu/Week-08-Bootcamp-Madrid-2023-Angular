@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+    <!-- En este caso se coloca "items" sin el "this" porque se encuentra dentro del mismo componente. -->
+    <li *ngFor="let item of items">
+      <a [routerLink]="item.path">
+        {{ item.label }}
+      </a>
+    </li>
+  </ul>
+</nav>

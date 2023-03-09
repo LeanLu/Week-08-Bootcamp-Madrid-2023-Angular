@@ -1,0 +1,36 @@
+<h3>
+  <button (click)="isDisplayForm = !isDisplayForm">
+    <ng-container *ngIf="isDisplayForm; else elseTemplate">
+      Ocultar
+    </ng-container>
+    <ng-template #elseTemplate> Añadir Tarea </ng-template>
+  </button>
+</h3>
+
+<!-- Se le indica al formulario el FormGroup que quiero que se aplique a través del [formGroup] -->
+<form
+  *ngIf="isDisplayForm"
+  [formGroup]="newTaskForm"
+  (ngSubmit)="(handleSubmit)"
+>
+  <div class="form-title">
+    <label for=""
+      >Título
+      <!-- En el input se coloca el formControlName para indicar a qué propiedad del formGroup pertenece -->
+      <input type="text" formControlName="title" />
+    </label>
+  </div>
+
+  <div class="form-owner">
+    <label for=""
+      >Owner
+      <input type="text" formControlName="owner" />
+    </label>
+  </div>
+
+  <!-- Agregamos el atributo disable para que solo se pueda hacer submit con el botón cuando los datos cumplan la validación -->
+  <button type="submit" [disabled]="newTaskForm.invalid">Añadir tarea</button>
+</form>
+
+<!-- Para ver los datos que vamos escribiendo:
+{{ newTaskForm.value | json }} -->
